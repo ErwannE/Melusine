@@ -1,8 +1,9 @@
 
 import pandas as pd
-
-df = pd.read_excel ('activité CEN.xlsx')
+repert = 'C:/Users/tidiane/Desktop/ReposGit/Melusine/data/'
+df = pd.read_excel(repert + 'CEN.xlsx')
 
 print(df.info())
 
-def regression_lineaire_multiple()
+def regression_lineaire_multiple():
+    pass
