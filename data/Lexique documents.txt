@@ -1,8 +1,6 @@
 ﻿CEN.xlsx
 
-
 Fichier récapiulatif des informations liées aux opérations effectuées dans l’entrepôt : ventilation des colis sur les chantiers. 1 ligne = 1 opération réalisée par un opérateur. NSP à quelle manif c’est associé > cf manif_2023
-
 
 * id_saisie : identifiant de l’opération effectuée. Unique > clé primaire.
 * date : celle à laquelle l’opération a été effectuée.
@@ -18,31 +16,20 @@ Fichier récapiulatif des informations liées aux opérations effectuées dans l
 
 Détail cde Frs OP blanc.csv
 
-
 Fichier donnant le détail des commandes réalisées par l’entrepôt à ses fournisseurs. (Rq : lignes en double… est-ce la même commande réalisée plusieurs fois (potentiellement à des dates différentes, mais on n’y a pas accès) ou juste des doublons qu’il faudra supprimer ?) 
 
-
-ENTPID
-	id entrepot (970 = CEN)
-	CMDID
-	n° de commande (lien avec prev_recep[‘num_commande’])
-	ITEMID
-	ref de l'article
-	VLCD
-	variante logistique (changement de condition, par exemple produit vendu par 6 ou par 12)
-	FRNCPTID
-	code fournisseur
-	MNFID
-	identifiant manif (manif = opération commerciale)
-	RECPQTY_COLIS
-	nb de colis réceptionnés
+* ENTPID : id entrepot (970 = CEN)
+* CMDID : n° de commande (lien avec prev_recep[‘num_commande’])
+* ITEMID : ref de l'article
+* VLCD : variante logistique (changement de condition, par exemple produit vendu par 6 ou par 12)
+* FRNCPTID : code fournisseur
+* MNFID : identifiant manif (manif = opération commerciale)
+* RECPQTY_COLIS : nb de colis réceptionnés
 	
 
 ex_engt r120 manif 632 2024_du211223.xlsx
 
-
 Fichier récapitulatif des commandes effectuées par les magasins à l'entrepôt, pour la manifestation 632. 
-
 
 * CCTMQ : code contremarque du magasin pour le WMS (référence magasin)
 * ICCLI : code magasin pour l’ERP, inutile
@@ -58,9 +45,7 @@ Fichier récapitulatif des commandes effectuées par les magasins à l'entrepôt
 
 manif_2023.xlsx
 
-
 Fichier qui recense les différentes répartitions des manifestations sur les circuits au sein de l’entrepôt.
-
 
 * Circuit : zone où l’on prépare les palettes au sol pour les opérations commerciales. n manif peuvent être affectées à un seul circuit. Synonyme : chantier
 * Manif : année / n° manif ( = ex_engt[‘CMANIF’]) / nom manif
@@ -71,35 +56,23 @@ Fichier qui recense les différentes répartitions des manifestations sur les ci
 
 Prépa CEN.csv
 
-
 Récapitulatif des produits présents dans l’entrepôt (manifestations associées, circuits, à qui ils doivent être livrés, …)
-ENTPID
-	code entrepôt (toujours 970 pour le CEN)
-	ITEMID
-	identifiant référence de l'article
-	ITEMLL
-	libellé de la référence 
-	FRNID
-	identifiant fournisseur
-	FRNLL
-	libellé fournisseur
-	RAYID
-	identifiant du rayon (type de produit)
-	CIRCUITLL
-	libellé du circuit
-	MNFID
-	identifiant de la manifestation
-	LOCID
-	identifiant contremarque magasin (code magasin, lieu de livraison)
-	SUM(NBPRISEPREP)
-	nombre de prises (=colis) préparés
+
+* ENTPID : code entrepôt (toujours 970 pour le CEN)
+* ITEMID : identifiant référence de l'article
+* ITEMLL : libellé de la référence 
+* FRNID : identifiant fournisseur
+* FRNLL : libellé fournisseur
+* RAYID : identifiant du rayon (type de produit)
+* CIRCUITLL : libellé du circuit
+* MNFID : identifiant de la manifestation
+* LOCID : identifiant contremarque magasin (code magasin, lieu de livraison)
+* SUM(NBPRISEPREP) : nombre de prises (=colis) préparés
 	
 
 prev_recep_melusine.xlsx
 
-
 Récapitulatif des réceptions de commandes de produits par l’entrepôt (palettes homogènes)
-
 
 * rayon : code rayon, qui donne le type de marchandise 
 * import : mode de transport (container = ?, route = ?) Rappel : réception par container = marchandise utilisable 2 jours après réception, par route = utilisable directement le jour même
