@@ -26,7 +26,7 @@ def get_agents_nb_by_circuit(df,hours_work_per_day_per_agent):
 
     for i in range(len(ordered_df)):
         if ordered_df['date'][i] == current_date:
-            if ordered_df['hours'][i] > 0:
+            if ordered_df['hours'][i] > 0: #filter out any useless line
                 res["agents_" + str(ordered_df['nom_regroupement'][i]) + '_' + str(current_date)] += ordered_df['hours'][i]
             else:
                 0
