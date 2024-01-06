@@ -16,7 +16,7 @@ ql_request = "SELECT hours, unite_oeuvre, strftime('%m',date) as mois, nom_regro
 data = pd.read_sql(ql_request, conn)
 data.to_sql('CEN_usable_sans_occ', conn, index=False, if_exists='replace')
 
-def format_hours(df, column='hours', timeleap = 15): #Formate le champ 'column" du dataframe de facon à arrondir les temps d'opérations dans des "espaces de temps" timeleap (multiples de timeleap, en minutes)
+def discret_hours(df, column='hours', timeleap = 15): #Formate le champ 'column" du dataframe de facon à arrondir les temps d'opérations dans des "espaces de temps" timeleap (multiples de timeleap, en minutes)
     try:
         mult = 60/timeleap
         df[column] = np.ceil(np.array(df[column].tolist())*mult)/mult #Conversion en array numpy pour utiliser ceil
@@ -39,7 +39,7 @@ def regpoly_selon_param(mois='mois', cat='nom_regroupement', deg=2, constante=Fa
     request = "SELECT hours, unite_oeuvre FROM " + database + " WHERE nom_regroupement=" + cat + " AND mois=" + mois
     print(request) 
     df = pd.read_sql(request, conn)
-    format_hours(df, timeleap=timeleap)
+    discret_hours(df, timeleap=timeleap)
 
     target = 'hours'
     y = df[target]
@@ -76,7 +76,7 @@ def print_regpoly_selon_param(mois='mois', cat='nom_regroupement', database='CEN
     request = "SELECT hours, unite_oeuvre FROM " + database + " WHERE nom_regroupement=" + cat + " AND mois=" + mois
     print(request) 
     df = pd.read_sql(request, conn)
-    format_hours(df, timeleap=timeleap)
+    discret_hours(df, timeleap=timeleap)
 
     def P(x_seq):
         return beta1h * x_seq + beta2h * (x_seq*x_seq)
@@ -102,27 +102,13 @@ def occurence_array(database = 'CEN_usable', timeleap = 15): #table des occurenc
     cat=['TEXTILE','ML','PARFUMERIE']
     inv_mois={'01':0,'02':1,'03':2,'04':3,'05':4,'06':5,'07':6,'08':7,'09':8,'10':9,'11':10,'12':11}
     inv_cat={'TEXTILE':0,'ML':1,'PARFUMERIE':2}
-    table_occ=[[[0 for i in range(int(7*(60/15)))] for j in range(len(mois))] for j in range(len(cat))]
+    table_occ=[[[0 for i in range(int(7*(60/timeleap)))] for j in range(len(mois))] for j in range(len(cat))]
     for m in mois:
         for c in cat:
             request = "SELECT hours, unite_oeuvre, occurence FROM " + database + " WHERE nom_regroupement='" + c + "' AND mois='" + m + "'"
             df = pd.read_sql(sql_request, conn)
-            format_hours(df, timeleap=timeleap)
+            discret_hours(df, timeleap=timeleap)
             for i in range(df.shape[0]):
                 table_occ[inv_cat[c]][inv_mois[m]][int(df.loc[i,'hours']*60/timeleap - 1)] += df.loc[i,'occurence']
     return table_occ
 
-# print(occurence_array()[0][0])
-
-print(regpoly_selon_param("04","ML"))
-print("TEST 1 OK")
-print_regpoly_selon_param('04',"ML")
-print("TEST 2 OK")
-print_regpoly_selon_param()
-print("TEST 3 OK")
-print_regpoly_selon_param(cat="ML")
-print("TEST 4 OK")
-print_regpoly_selon_param(mois="07")
-print("TEST 4 OK")
-print(regpoly_selon_param(mois='07', deg= 1))
-print("TEST 5 OK")
