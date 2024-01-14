@@ -41,6 +41,15 @@ Fichier récapitulatif des commandes effectuées par les magasins à l'entrepôt
 * QTCON :  quantité contrôlée, celle qui est effectivement arrivée en magasin (utiliser celle-ci plutôt que les autres QT je pense, mais en attente de plus d’infos côté mark)
 * DCOCC et DMOCC : Catherine va demander plus d’infos
 * CUTIL, CPGMP, CORID, CEXTM : useless
+* cdmsiq : code msi 
+* qtcon : qté en conseil
+* qtrtm : qté retenue
+* qtaff : qté affectée par rapport au stock 
+* qtliva : qté envoyé à meti
+* qtfac1 : qté facturée
+* dcocc : la date de création de la retenue.
+* dmocc : date de derniere maj sur l’avancement du traitement.
+
 
 
 manif_2023.xlsx
