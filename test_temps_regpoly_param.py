@@ -1,4 +1,4 @@
-from temps_regpoly_param import *
+from analyse_poly_temps import *
 
 # print(occurence_array()[0][0])
 

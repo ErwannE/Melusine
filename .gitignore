@@ -1,1 +1,5 @@
 data/melusine_database.db
+test_Erwann.py
+test_linear_regression.py
+test_temps_regpoly_param.py
+__pycache__/
