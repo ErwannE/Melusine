@@ -25,7 +25,7 @@ import sqlite3
 conn = sqlite3.connect('data/melusine_database.db') #Outil permettant d'exploiter la base de donnée
 
 def proba_condi(cat, mois, database='CEN_usable_sans_occ', timeleap = 15, seuils = [0, 250, 600, 1000, 1500]): 
-    print("cat : "+cat+", mois : "+mois)
+    #print("cat : "+cat+", mois : "+mois)
     if mois != 'mois':
         mois = ajouter_guillemets(mois) #Permet la compatibilité avec l'absence de paramètre demandé 
                             #(si aucun mois renseigné, la condition mois = mois est toujours respecté dans la requête, si renseigné la condition sur le mois en SQL doit être de la forme mois='val_mois')

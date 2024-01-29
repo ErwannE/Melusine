@@ -1,1 +1,1 @@
-pip install pandas openpyxl sqlalchemy
+pip install pandas openpyxl sqlalchemy numpy matplotlib 
